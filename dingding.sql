@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: 127.0.0.1
--- 生成日期: 2015-04-04 22:10:25
+-- 生成日期: 2015-04-09 00:56:55
 -- 服务器版本: 5.6.11
 -- PHP 版本: 5.5.1
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `commet` (
   `owner_id` int(11) unsigned NOT NULL DEFAULT '0',
   `target_id` int(11) unsigned DEFAULT '0',
   `status` tinyint(3) DEFAULT '0',
-  `content` varchar(255) NOT NULL DEFAULT '''''',
+  `content` varchar(255) DEFAULT NULL,
   `create_time` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `opinion_id` (`opinion_id`)
@@ -49,9 +49,9 @@ CREATE TABLE IF NOT EXISTS `commet` (
 CREATE TABLE IF NOT EXISTS `opinion` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `device` varchar(64) DEFAULT '''''',
+  `device` varchar(64) DEFAULT NULL,
   `status` tinyint(3) unsigned DEFAULT '0',
-  `pictures` varchar(255) DEFAULT '''''',
+  `pictures` varchar(255) DEFAULT NULL,
   `score` int(11) unsigned DEFAULT '0',
   `stars` int(11) DEFAULT '0',
   `view` text,
@@ -69,15 +69,21 @@ CREATE TABLE IF NOT EXISTS `opinion` (
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(64) DEFAULT '''''',
-  `nick_name` varchar(64) DEFAULT '''''',
-  `mobile` varchar(11) NOT NULL DEFAULT '''''',
-  `photo` varchar(255) DEFAULT '''''',
-  `brief` varchar(255) DEFAULT '''''',
+  `user_name` varchar(64) DEFAULT NULL,
+  `mobile` varchar(11) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `brief` varchar(255) DEFAULT NULL,
   `integral` int(11) unsigned DEFAULT '0',
   `is_leader` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- 转存表中的数据 `user`
+--
+
+INSERT INTO `user` (`id`, `user_name`, `mobile`, `photo`, `brief`, `integral`, `is_leader`) VALUES
+(3, '牛', '17600878830', '/uploads/17600878830_photo.jpg', '开发者', 0, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
