@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <title>我的主页-个人中心</title>
+  <title>丁盯智能门磁 - 云丁网络技术（北京）有限公司</title>
   <link href="/static/style/style.css" rel="stylesheet" charset="utf-8" />
 </head>
 <body>
@@ -12,27 +12,27 @@
       <div class="logo">
         <img src="/static/images/logo.png" />
       </div>
-      <a href="setting.html" class="btn">
-        <img src="/static/images/temp/ico.png" />
+      <a href="/opinion/personal" class="btn">
+        <img src="<?php if(isset($info['photo'])) echo $info['photo'];?>" />
       </a>
       <ul class="navbar">
         <li>
           <a href="/" >首 页</a>
         </li>
         <li>
-          <a href="" >产 品</a>
+          <a href="/guide" >咨询中心</a>
         </li>
         <li class="active">
-          <a href="" >观 点</a>
+          <a href="/opinion" >观 点</a>
         </li>
         <li>
-          <a href="/about" >团 队</a>
-        </li>
-        <li>
-          <a href="/guide" >咨 询</a>
+          <a href="/about" >关于我们</a>
         </li>
         <li>
           <a href="/download" >APP下载</a>
+        </li>
+        <li>
+          <a href="/news" >口碑</a>
         </li>
       </ul>
     </div>
@@ -44,12 +44,12 @@
     <div class="content">
       <div class="pcintro">
         <p class="avatar">
-          <img src="/static/images/temp/avatar.png" />
+          <img src="<?php if(isset($info['photo'])) echo $info['photo'];?>" />
         </p>
-        <h2>孙文媛</h2>
-        <p>一个热爱生活的电子狂人</p>
-        <p>积分 200分</p>
-        <a href="opinion/modify" class="edit"></a>
+        <h2><?php if(isset($info['user_name']) && !empty($info['user_name'])) {echo $info['user_name'];} else {echo $info['mobile'];}?></h2>
+        <p><?php if(isset($info['brief']) && !empty($info['brief'])) {echo $info['brief'];} else {echo '暂无';}?></p>
+        <p>积分<?php if(isset($info['integral']) && !empty($info['integral'])) {echo $info['brief'];} else {echo '0';}?>分</p>
+        <a href="/opinion/edit" class="edit"></a>
       </div>
       <div class="show">
         <p>发表你对产品的观点吧，下一位意见领袖就是你！</p>
@@ -57,7 +57,7 @@
           <li>
             <div class="p1">
               <p class="ab">
-                <a href="">写写看></a>
+                <a href="/opinion/myopmf">写写看></a>
                 <span>您尚未发表观点</span>
               </p>
             </div>
@@ -66,7 +66,7 @@
           <li>
             <div class="p2">
               <p class="ab">
-                <span>您已发表观点</span>
+                <a href="/opinion/myop"><span>您已发表观点</span></a>
                 <span class="chat">追问（300条）</span>
               </p>
             </div>

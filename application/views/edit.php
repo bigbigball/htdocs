@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <title>修改个人信息</title>
+  <title>丁盯智能门磁 - 云丁网络技术（北京）有限公司</title>
   <link href="/static/style/style.css" rel="stylesheet" charset="utf-8" />
 </head>
 <body>
@@ -12,27 +12,27 @@
       <div class="logo">
         <img src="/static/images/logo.png" />
       </div>
-      <a href="setting.html" class="btn">
-        <img src="/static/images/temp/ico.png" />
+      <a href="/opinion/personal" class="btn">
+        <img src="<?php if(isset($info['photo'])) echo $info['photo'];?>" />
       </a>
      <ul class="navbar">
-		<li>
+        <li>
           <a href="/" >首 页</a>
         </li>
         <li>
-          <a href="" >产 品</a>
+          <a href="/guide" >咨询中心</a>
         </li>
         <li class="active">
           <a href="/opinion" >观 点</a>
         </li>
         <li>
-          <a href="/about" >团 队</a>
-        </li>
-        <li>
-          <a href="/guide" >咨 询</a>
+          <a href="/about" >关于我们</a>
         </li>
         <li>
           <a href="/download" >APP下载</a>
+        </li>
+        <li>
+          <a href="/news" >口碑</a>
         </li>
       </ul>
     </div>
@@ -45,18 +45,23 @@
         <h4>修改个人信息</h4>
         <div class="left">
           <p class="avatar">
-            <img src="" />        
+            <img src="<?php if(isset($info['photo'])) echo $info['photo'];?>" />        
           </p>
-            <a href="">上传头像</a>
+			<?php echo form_open_multipart('opinion/do_upload');?> 
+			<input type="file" name="userfile" size="20" />
+			<input type="submit" value="上传头像" style="margin-top:15px;color:#3cd5af;font-size:16px"/>
+			</form>
         </div>
         <div class="right">
+        <form action="/opinion/do_edit" enctype="multipart/form-data" method="post" accept-charset="utf-8">
           <div class="base">
             <p>姓名</p>
-            <input type="text" value="孙文媛"/>
+            <input name="name" type="text" value="<?php if(isset($info['user_name']) && !empty($info['user_name'])) {echo $info['user_name'];} else {echo $info['mobile'];}?>"/>
             <p for="">个人描述</p>
-            <textarea name="" id="" cols="30" rows="10" placeholder="一个热爱生活的电子狂人！"></textarea>
+            <textarea name="brief" cols="30" rows="10"><?php if(isset($info['brief']) && !empty($info['brief'])) {echo $info['brief'];} else {echo '暂无';}?></textarea>
           </div>
-          <a href="" class="btn btn-a">确认</a>
+          <input type="submit" value="确认" style="margin-left: 34px;margin-top: 30px;width: 290px;border: none;background: #3cd5af;color: #fff;font-size: 20px;padding: 6px 12px;border-radius: 6px;">
+        </form>
         </div>
         </div>
   </div>
