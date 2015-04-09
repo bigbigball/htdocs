@@ -3,9 +3,9 @@
 require_once 'BaseCurl.php';
 
 class MultiCurl extends BaseCurl {
-	
-	static $instance = NULL;
-	
+
+    static $instance = NULL;
+
     public function open() {
         $this->curlHandle = curl_multi_init();
     }

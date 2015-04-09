@@ -2,8 +2,8 @@
 
 abstract class BaseCurl {
     
-    const DefaultTimeOut = 2;  //默认接口超时时间
-    const DefaultTimOutConn = 1; //默认连接时间 
+    const DefaultTimeOut = 3;  //默认接口超时时间
+    const DefaultTimOutConn = 2; //默认连接时间 
     
     private $requestMap = array();
     private $useragent = '';

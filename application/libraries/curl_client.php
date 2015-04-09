@@ -1,9 +1,10 @@
 <?php 
+if(!defined('BASEPATH')) exit('No direct script asscess allowed');
 
 require_once 'curl/CurlRequest.php';
 require_once 'curl/Transport.php';
 
-class CurlClient {
+class Curl_client {
 
     const HTTP_GET = 'GET';
     const HTTP_POST = 'POST';

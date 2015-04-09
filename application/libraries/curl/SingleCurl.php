@@ -4,8 +4,8 @@ require_once 'BaseCurl.php';
 
 class SingleCurl extends BaseCurl {
     
-	static $instance = NULL;
-	
+    static $instance = NULL;
+
     public function open() {
         $this->curlHandle = $this->initSingleCurl();
     }
