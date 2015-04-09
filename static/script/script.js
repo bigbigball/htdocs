@@ -35,18 +35,15 @@ $(document).ready(function() {
       changebanner = setInterval(tooglebanner, 5000);
     });
 
-
+    var circle = $(".circle-percent");
+    var left = circle.find('.left');
+    var right = circle.find('.right');
     //综合分数
     function circlePercent(circle, percent) {
       var circle = circle || $(".circle-percent");
       var percent = percent || 0;
-      var left = null,
-        right = null;
-
+      
       if (circle !== null) {
-        left = circle.find('.left');
-        right = circle.find('.right');
-        //circle.attr("percent", percent);
         if (percent <= 50 && percent >= 0) {
           right.css("display", "block");
           right.rotate({
@@ -65,27 +62,66 @@ $(document).ready(function() {
         }
       }
     }
-    var circle = $(".circle-percent");
+    //星星显示并计算综合分数
     var t = null;
-    var percent = 0;
-    var score = circle.attr('data') > 0 ? circle.attr('data') * 10 : 0;
-    if (circle !== null) {
-      t = setInterval(function() {
-        if (percent > score) {
-          clearInterval(t);
-        } else {
-          percent++;
-          circlePercent(circle, percent);
-          //  circle.attr("percent", percent);
-        }
-      }, 17);
+    function calScores(){
+      var stararea=$(".stars .star_bg");
+      var num = 0;
+      var comscore = 0;
+      var percent = 0;
+      clearInterval(t);
+      stararea.each(function(index) {
+        num = $(this).find('.checked').index()+1;
+        comscore += num * 0.5;
+      });
+      circle.attr("data", comscore);
+      
+      if (circle !== null) {
+        t = setInterval(function() {
+          if (percent > comscore*10) {
+            clearInterval(t);
+          } else {
+            circlePercent(circle, percent);
+            percent++;
+          }
+        }, 15);
+      }
     }
-
+    if($(".stars .star_bg").length){calScores();}
     //星星评价
     $(".star").click(function() {
       $(this).addClass('checked').siblings().removeClass('checked');
-
+      calScores();
     });
+
+
+    //个人中心页面--根据星星的data数值(data数值代表四个评价的对应得分)计算综合分数并显示
+    function calScores2(){
+      clearInterval(t);
+      var grade=$(".stars .grade");
+      var singlescore= 0;
+      var comscore = 0;
+      var percent = 0;
+      /*获取各个评价的数值，并显示*/
+      grade.each(function() {
+        singlescore= $(this).attr("data");
+        $(this).find('.num').width(singlescore*40+"%");
+        comscore += parseFloat(singlescore);
+      });
+      circle.attr("data", comscore);
+      
+      if (circle !== null) {
+        t = setInterval(function() {
+          if (percent > comscore*10) {
+            clearInterval(t);
+          } else {
+            circlePercent(circle, percent);
+            percent++;
+          }
+        }, 15);
+      }
+    }
+    if($(".stars .grade").length){ calScores2();}
 
     //照片墙
     $(".photoWall li").each(function(index) {

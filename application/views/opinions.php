@@ -13,7 +13,7 @@
         <img src="/static/images/logo.png" />
       </div>
       <a href="/opinion/personal" class="btn">
-        <img src="/static/images/temp/ico.png" />
+        <img src="<?php if(isset($info['photo'])) echo $info['photo'];?>" />
       </a>
       <ul class="navbar">
         <li>
@@ -49,171 +49,36 @@
         <h4>丁盯门磁</h4>
       </div>
       <ul  class="photoWall">
+      <?php for($i=0;$i<12;$i++){?>
         <li>
-          <img src="/static/images/temp/photo_1.png" >
+          <img src="<?php if(isset($alluser[$i]) && isset($alluser[$i]['photo'])) echo $alluser[$i]['photo'];?>" >
           <div class="photo_info">
-            <h1>孙文媛</h1>
-            <p>积分：4000</p>
-            <p>最热观点：丁盯门磁的辉煌历史！</p>
+            <h1><?php if(isset($alluser[$i]) && isset($alluser[$i]['user_name'])) {echo $alluser[$i]['user_name'];} else if(isset($alluser[$i])) {echo $alluser[$i]['mobile'];}?></h1>
+            <p>积分：<?php if(isset($alluser[$i]) && isset($alluser[$i]['integral'])) {echo $alluser[$i]['integral'];} else echo '0';?>分</p>
+            <p><?php if(isset($alluser[$i]) && isset($alluser[$i]['brief'])) {echo $alluser[$i]['brief'];}?></p>
           </div>
         </li>
-        <li>
-          <img src="/static/images/temp/photo_2.png" >
-          <div class="photo_info">
-            <h1>孙文媛</h1>
-            <p>积分：4000</p>
-            <p>最热观点：丁盯门磁的辉煌历史！</p>
-          </div>
-        </li>
-        <li>
-          <img src="/static/images/temp/photo_3.png" >
-          <div class="photo_info">
-            <h1>孙文媛</h1>
-            <p>积分：4000</p>
-            <p>最热观点：丁盯门磁的辉煌历史！</p>
-          </div>
-        </li>
-        <li>
-          <img src="/static/images/temp/photo_4.png" >
-          <div class="photo_info">
-            <h1>孙文媛</h1>
-            <p>积分：4000</p>
-            <p>最热观点：丁盯门磁的辉煌历史！</p>
-          </div>
-        </li>
-        <li class="right">
-          <img src="/static/images/temp/photo_7.png" >
-          <div class="photo_info">
-            <h1>孙文媛</h1>
-            <p>积分：4000</p>
-            <p>最热观点：丁盯门磁的辉煌历史！</p>
-          </div>
-        </li>
-        <li>
-          <img src="/static/images/temp/photo_8.png" >
-          <div class="photo_info">
-            <h1>孙文媛</h1>
-            <p>积分：4000</p>
-            <p>最热观点：丁盯门磁的辉煌历史！</p>
-          </div>
-        </li>
-        <li>
-          <img src="/static/images/temp/photo_3.png" >
-          <div class="photo_info">
-            <h1>孙文媛</h1>
-            <p>积分：4000</p>
-            <p>最热观点：丁盯门磁的辉煌历史！</p>
-          </div>
-        </li>
-        <li>
-          <img src="/static/images/temp/photo_7.png" >
-          <div class="photo_info">
-            <h1>孙文媛</h1>
-            <p>积分：4000</p>
-            <p>最热观点：丁盯门磁的辉煌历史！</p>
-          </div>
-        </li>
-        <li>
-          <img src="/static/images/temp/photo_2.png" >
-          <div class="photo_info">
-            <h1>孙文媛</h1>
-            <p>积分：4000</p>
-            <p>最热观点：丁盯门磁的辉煌历史！</p>
-          </div>
-        </li>
-        <li>
-          <img src="/static/images/temp/photo_3.png" >
-          <div class="photo_info">
-            <h1>孙文媛</h1>
-            <p>积分：4000</p>
-            <p>最热观点：丁盯门磁的辉煌历史！</p>
-          </div>
-        </li>
-        <li>
-          <img src="/static/images/temp/photo_2.png" >
-          <div class="photo_info">
-            <h1>孙文媛</h1>
-            <p>积分：4000</p>
-            <p>最热观点：丁盯门磁的辉煌历史！</p>
-          </div>
-        </li>
-        <li>
-          <img src="/static/images/temp/photo_1.png" >
-          <div class="photo_info">
-            <h1>孙文媛</h1>
-            <p>积分：4000</p>
-            <p>最热观点：丁盯门磁的辉煌历史！</p>
-          </div>
-        </li>
+        <?php }?>
       </ul>
       <div class="title">
         <h4>产品观点</h4>
       </div>
       <ul class="listview">
+      <?php for($i=0;$i<12;$i++){?>
         <li class="li-thumb">
-          <img src="/static/images/temp/icon.png" />
+          <img src="<?php if(isset($alluser[$i]) && isset($alluser[$i]['photo'])) echo $alluser[$i]['photo'];?>" />
           <h3>
-            孙文媛
-            <span>积分 200分</span>
+          <?php if(isset($alluser[$i]) && isset($alluser[$i]['user_name'])) {echo $alluser[$i]['user_name'];} else if(isset($alluser[$i])) {echo $alluser[$i]['mobile'];}?>
+            <span>积分<?php if(isset($alluser[$i]) && isset($alluser[$i]['integral'])) {echo $alluser[$i]['integral'];} else echo '0';?>分</span>
           </h3>
           <div class="pro-point">
             <div class="info">
-              <h5>丁盯智能门磁由云丁网络技术有限公司倾情打造。</h5>
-              <p>
-                丁盯团队由一批酷爱电子产品的极客组成，其核心团队均来自国内顶级互联网公司，并有着丰富智能家居及可穿戴领域经验，可以说是国内最早一批大量接触智能生活硬件的团队。基于对智能硬件更纯粹更极致的追求，一群有共同信仰的人走到了一起，创造了丁盯智能。
-              </p>
+              <?php if(isset($allopinion[$i]) && isset($allopinion[$i]['view'])) echo $allopinion[$i]['view'];?>
             </div>
             <div class="aq">追问（共800条）</div>
           </div>
         </li>
-        <li class="li-thumb">
-          <img src="/static/images/temp/icon.png" />
-          <h3>
-            孙文媛
-            <span>积分 200分</span>
-          </h3>
-          <div class="pro-point">
-            <div class="info">
-              <h5>丁盯智能门磁由云丁网络技术有限公司倾情打造。</h5>
-              <p>
-                丁盯团队由一批酷爱电子产品的极客组成，其核心团队均来自国内顶级互联网公司，并有着丰富智能家居及可穿戴领域经验，可以说是国内最早一批大量接触智能生活硬件的团队。基于对智能硬件更纯粹更极致的追求，一群有共同信仰的人走到了一起，创造了丁盯智能。
-              </p>
-            </div>
-            <div class="aq">追问（共800条）</div>
-          </div>
-        </li>
-        <li class="li-thumb">
-          <img src="/static/images/temp/icon.png" />
-          <h3>
-            孙文媛
-            <span>积分 200分</span>
-          </h3>
-          <div class="pro-point">
-            <div class="info">
-              <h5>丁盯智能门磁由云丁网络技术有限公司倾情打造。</h5>
-              <p>
-                丁盯团队由一批酷爱电子产品的极客组成，其核心团队均来自国内顶级互联网公司，并有着丰富智能家居及可穿戴领域经验，可以说是国内最早一批大量接触智能生活硬件的团队。基于对智能硬件更纯粹更极致的追求，一群有共同信仰的人走到了一起，创造了丁盯智能。
-              </p>
-            </div>
-            <div class="aq">追问（共800条）</div>
-          </div>
-        </li>
-        <li class="li-thumb">
-          <img src="/static/images/temp/icon.png" />
-          <h3>
-            孙文媛
-            <span>积分 200分</span>
-          </h3>
-          <div class="pro-point">
-            <div class="info">
-              <h5>丁盯智能门磁由云丁网络技术有限公司倾情打造。</h5>
-              <p>
-                丁盯团队由一批酷爱电子产品的极客组成，其核心团队均来自国内顶级互联网公司，并有着丰富智能家居及可穿戴领域经验，可以说是国内最早一批大量接触智能生活硬件的团队。基于对智能硬件更纯粹更极致的追求，一群有共同信仰的人走到了一起，创造了丁盯智能。
-              </p>
-            </div>
-            <div class="aq">追问（共800条）</div>
-          </div>
-        </li>
+        <?php }?>
       </ul>
     </div>
     <div class="side content">

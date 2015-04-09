@@ -54,19 +54,19 @@
           <div class="bannerbar">
             <div class="banner">
               <div class="item" >
-                <img src="/static/images/temp/p_1.png" />
+                <img src="<?php if(isset($pictures[0])) echo $pictures[0]; else echo "/static/images/temp/p_1.png";?>" />
               </div>
               <div class="item">
-                <img src="/static/images/temp/p_1.png" />
+                <img src="<?php if(isset($pictures[1])) echo $pictures[1]; else echo "/static/images/temp/p_1.png";?>" />
               </div>
               <div class="item">
-                <img src="/static/images/temp/p_1.png" />
+                <img src="<?php if(isset($pictures[2])) echo $pictures[2]; else echo "/static/images/temp/p_1.png";?>" />
               </div>
               <div class="item">
-                <img src="/static/images/temp/p_1.png" />
+                <img src="<?php if(isset($pictures[3])) echo $pictures[3]; else echo "/static/images/temp/p_1.png";?>" />
               </div>
               <div class="item">
-                <img src="/static/images/temp/p_1.png" />
+                <img src="<?php if(isset($pictures[4])) echo $pictures[4]; else echo "/static/images/temp/p_1.png";?>" />
               </div>
               <div class="temp"></div>
               <ul class="switch">
@@ -116,7 +116,7 @@
             </div>
             <div class="circle">
               <p>综合评分</p>
-              <div class="circle-percent" data="3.8"></div>
+              <div class="circle-percent" data="<?php if(isset($opinion['score'])) echo $opinion['score']; else echo "0";?>"></div>
             </div>
           </div>
         </div>
@@ -125,10 +125,7 @@
         </div>
         <div class="pro-point">
           <div class="info">
-            <h5>丁盯智能门磁由云丁网络技术有限公司倾情打造。</h5>
-            <p>
-              丁盯团队由一批酷爱电子产品的极客组成，其核心团队均来自国内顶级互联网公司，并有着丰富智能家居及可穿戴领域经验，可以说是国内最早一批大量接触智能生活硬件的团队。基于对智能硬件更纯粹更极致的追求，一群有共同信仰的人走到了一起，创造了丁盯智能。
-            </p>
+			<?php if(isset($opinion['view'])) echo $opinion['view'];?>
           </div>
           <div class="aq">追问（共800条）</div>
         </div>

@@ -61,32 +61,36 @@
             </div>
             <div class="hint">
               <p>图片尺寸：500X500像素</p>
-              <a href="">点击上传图片</a>
+            <?php echo form_open_multipart('opinion/upload_prodpic');?> 
+			<input type="file" name="userfile" size="20" />
+			<input type="submit" value="点击上传图片" style="width: 100%;display: block;padding: 12px 0;font-size: 20px;color: #333;background-color: #38c8a4;"/>
+			</form>
             </div>
           </div>
           <ul class="imglist">
             <li>
-              <img src="" />
+              <img src="<?php if(isset($pictures[0])) echo $pictures[0];?>" style="width: 60px;height: 60px;"/>
               <a href="" class="del"></a>
             </li>
             <li>
-              <img src="" />
+              <img src="<?php if(isset($pictures[1])) echo $pictures[1];?>" style="width: 60px;height: 60px;"/>
               <a href="" class="del"></a>
             </li>
             <li>
-              <img src="" />
+              <img src="<?php if(isset($pictures[2])) echo $pictures[2];?>" style="width: 60px;height: 60px;"/>
               <a href="" class="del"></a>
             </li>
             <li>
-              <img src="" />
+              <img src="<?php if(isset($pictures[3])) echo $pictures[3];?>" style="width: 60px;height: 60px;"/>
               <a href="" class="del"></a>
             </li>
             <li>
-              <img src="" />
+              <img src="<?php if(isset($pictures[4])) echo $pictures[4];?>" style="width: 60px;height: 60px;"/>
               <a href="" class="del"></a>
             </li>
           </ul>
         </div>
+        <form action="/opinion/do_modify" enctype="multipart/form-data" method="post" accept-charset="utf-8">
         <div class="pro-grade">
           <div class="stars">
             <h3> <em>*</em>
@@ -143,7 +147,7 @@
           </div>
           <div class="circle">
             <p>综合评分</p>
-            <div class="circle-percent" data="8.8">
+            <div class="circle-percent" data="0">
                 <div class="left"><img src="/static/images/circle_r.png" /></div>
                 <div class="cover"></div>
                 <div class="right"><img src="/static/images/circle_l.png" /></div>
@@ -156,12 +160,15 @@
           产品观点
         </h3>
         <div class="inputbox">
-          <img src="/static/images/temp/t_1.png" />      
+        <textarea name="web_description" id="web_description" style="height:250px;">
+        <?php if(isset($opinion['view'])) echo $opinion['view'];?>
+        </textarea>
         </div>
       </div>
       <div class="finish">
-        <a href="" class="btn btn-a">完&nbsp;&nbsp;成</a>
+        <input type="submit" value="完&nbsp;&nbsp;成" style="font-size: 22px;padding: 16px 118px;background: #3cd5af;color: #fff;border-radius: 6px;display: inline-block;">
       </div>
+      </form>
     </div>
   </div>
 
@@ -199,5 +206,24 @@
   <script type="text/javascript" src="/static/script/jquery-1.7.min.js"></script>
    <script type="text/javascript" src="/static/script/jquery.rotate.min.js"></script>
   <script type="text/javascript" src="/static/script/script.js"></script>
+    <script src="/static/script/keditor/kindeditor-min.js"></script>
+    <script src="/static/script/keditor/lang/zh_CN.js"></script>
+	<script>
+	$(document).ready(function(){
+		var editor;
+		KindEditor.ready(function(K) {
+			editor = K.create('#web_description', {
+				resizeType : 1,
+				allowPreviewEmoticons : false,
+				allowImageUpload : true,
+				width : '100%',
+				afterBlur: function(){this.sync('#web_description');},
+			});
+		});	
+	});
+	function from_submit(){
+		$("#local_form").submit();	
+	}
+	</script>
 </body>
 </html>

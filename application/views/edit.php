@@ -47,7 +47,7 @@
           <p class="avatar">
             <img src="<?php if(isset($info['photo'])) echo $info['photo'];?>" />        
           </p>
-			<?php echo form_open_multipart('opinion/do_upload');?> 
+			<?php echo form_open_multipart('opinion/upload_photo');?> 
 			<input type="file" name="userfile" size="20" />
 			<input type="submit" value="上传头像" style="margin-top:15px;color:#3cd5af;font-size:16px"/>
 			</form>
