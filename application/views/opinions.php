@@ -15,6 +15,10 @@
       <a href="/opinion/personal" class="btn">
         <img src="<?php if(isset($info['photo'])) echo $info['photo'];?>" />
       </a>
+
+      <a href="/user/login" class="btn">登录</a>
+      <a href="/user/logout" class="btn">退出</a>
+
       <ul class="navbar">
         <li>
           <a href="/" >首 页</a>
