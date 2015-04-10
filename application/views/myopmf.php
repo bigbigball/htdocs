@@ -39,7 +39,10 @@
   </div>
   <div class="container">
     <div class="location">
-      <span>当前位置—个人中心</span>
+      <span> 
+      <a href="/opinion/personal">个人中心 </a>
+      <i></i><a href="/opinion/myop">丁盯门磁</a> <i></i> 编辑
+      </span>
     </div>
     <div class="content">
       <div class="pcintro">
@@ -166,7 +169,7 @@
         </div>
       </div>
       <div class="finish">
-        <input type="submit" value="完&nbsp;&nbsp;成" style="font-size: 22px;padding: 16px 118px;background: #3cd5af;color: #fff;border-radius: 6px;display: inline-block;">
+        <input type="submit" class="btn btn-a" value="完&nbsp;&nbsp;成">
       </div>
       </form>
     </div>

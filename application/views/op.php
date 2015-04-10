@@ -48,7 +48,6 @@
       <div class="content">
         <div class="title">
           <h4>丁盯门磁</h4>
-          <a href="/opinion/myopmf" class="btn btn-b">编 辑</a>
         </div>
         <div class="comment">
           <div class="bannerbar">
@@ -131,7 +130,7 @@
           <div class="info">
 			<?php if(isset($opinion['view'])) echo $opinion['view'];?>
           </div>
-          <div class="aq">追问（共800条）</div>
+          <div class="aq">追问（共<?php if(isset($count)) echo $count;?>条）</div>
         </div>
         <div class="talk">
           <h5>谈谈你的观点呢</h5>
@@ -152,7 +151,7 @@
               <a href="" class="btn btn-b">回复</a>
             </li>
             <?php }?>
-		</ul>
+          </ul>
         </div>
       </div>
     </div>

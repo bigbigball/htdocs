@@ -6,10 +6,10 @@ class User_model extends CI_Model
 		$this->load->database();
 	}
 	
-	public function get_user($mobile)
+	public function get_user($where)
 	{
 		$this->db->select('*');
-		$query = $this->db->get_where('user', array('mobile' => $mobile));
+		$query = $this->db->get_where('user', $where);
 		return $query->row_array();
 	}
 	
@@ -22,13 +22,5 @@ class User_model extends CI_Model
 	{
 		$this->db->where('mobile', $mobile);
 		return $this->db->update('user', $data);
-	}
-	
-	public function get_alluser()
-	{
-		$this->db->select('*');
-		$this->db->order_by('id', 'desc');
-		$query = $this->db->get('user');
-		return $query->result_array();
 	}
 }

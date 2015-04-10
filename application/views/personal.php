@@ -57,8 +57,8 @@
           <li>
             <div class="p1">
               <p class="ab">
-                <a href="/opinion/myopmf">写写看></a>
-                <span>您尚未发表观点</span>
+                <a href="">了解产品></a>
+                <span>此设备尚未购买或未被绑定</span>
               </p>
             </div>
             <h3>丁盯指纹锁</h3>
@@ -66,8 +66,13 @@
           <li>
             <div class="p2">
               <p class="ab">
+               <?php if(isset($published) && $published){?>
                 <a href="/opinion/myop"><span>您已发表观点</span></a>
-                <span class="chat">追问（300条）</span>
+                <span class="chat">追问（<?php if(isset($count)) echo $count;?>条）</span>
+                <?php } else {?>
+                <a href="/opinion/myopmf">写写看></a>
+                <span>您尚未发表观点</span>
+                <?php }?>
               </p>
             </div>
             <h3>丁盯门磁</h3>

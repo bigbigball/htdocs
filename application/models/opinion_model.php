@@ -6,10 +6,10 @@ class Opinion_model extends CI_Model
 		$this->load->database();
 	}
 	
-	public function get_opinion($user_id)
+	public function get_opinion($data)
 	{
 		$this->db->select('*');
-		$query = $this->db->get_where('opinion', array('user_id' => $user_id));
+		$query = $this->db->get_where('opinion', $data);
 		return $query->row_array();
 	}
 	
@@ -27,8 +27,10 @@ class Opinion_model extends CI_Model
 	public function get_allopinion()
 	{
 		$this->db->select('*');
+		$this->db->from('user');
+		$this->db->join('opinion', 'user.id = opinion.user_id');
 		$this->db->order_by('update_time', 'desc');
-		$query = $this->db->get('opinion');
+		$query = $this->db->get();
 		return $query->result_array();
 	}
 }

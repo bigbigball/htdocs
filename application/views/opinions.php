@@ -44,8 +44,8 @@
   <div class="container">
     <div class="location">
       <span>
-        观点 <i></i>
-        丁盯门磁
+      <a href="/opinion">观点</a>
+       <i></i>丁盯门磁
       </span>
     </div>
     <div class="points content ">
@@ -55,11 +55,11 @@
       <ul  class="photoWall">
       <?php for($i=0;$i<12;$i++){?>
         <li>
-          <img src="<?php if(isset($alluser[$i]) && isset($alluser[$i]['photo'])) echo $alluser[$i]['photo'];?>" >
+          <img src="<?php if(isset($allopinion[$i]) && isset($allopinion[$i]['photo'])) echo $allopinion[$i]['photo'];?>" >
           <div class="photo_info">
-            <h1><?php if(isset($alluser[$i]) && isset($alluser[$i]['user_name'])) {echo $alluser[$i]['user_name'];} else if(isset($alluser[$i])) {echo $alluser[$i]['mobile'];}?></h1>
-            <p>积分：<?php if(isset($alluser[$i]) && isset($alluser[$i]['integral'])) {echo $alluser[$i]['integral'];} else echo '0';?>分</p>
-            <p><?php if(isset($alluser[$i]) && isset($alluser[$i]['brief'])) {echo $alluser[$i]['brief'];}?></p>
+            <h1><?php if(isset($allopinion[$i]) && isset($allopinion[$i]['user_name']) && $allopinion[$i]['user_name']) {echo $allopinion[$i]['user_name'];} else if(isset($allopinion[$i])) {echo $allopinion[$i]['mobile'];}?></h1>
+            <p>积分：<?php if(isset($allopinion[$i]) && isset($allopinion[$i]['integral'])) {echo $allopinion[$i]['integral'];} else echo '0';?>分</p>
+            <p><?php if(isset($allopinion[$i]) && isset($allopinion[$i]['brief'])) {echo $allopinion[$i]['brief'];}?></p>
           </div>
         </li>
         <?php }?>
@@ -68,18 +68,21 @@
         <h4>产品观点</h4>
       </div>
       <ul class="listview">
-      <?php for($i=0;$i<12;$i++){?>
+      <?php foreach($allopinion as $opinion){?>
         <li class="li-thumb">
-          <img src="<?php if(isset($alluser[$i]) && isset($alluser[$i]['photo'])) echo $alluser[$i]['photo'];?>" />
+          <img src="<?php if(isset($opinion['photo'])) echo $opinion['photo'];?>" />
           <h3>
-          <?php if(isset($alluser[$i]) && isset($alluser[$i]['user_name'])) {echo $alluser[$i]['user_name'];} else if(isset($alluser[$i])) {echo $alluser[$i]['mobile'];}?>
-            <span>积分<?php if(isset($alluser[$i]) && isset($alluser[$i]['integral'])) {echo $alluser[$i]['integral'];} else echo '0';?>分</span>
+          <?php if(isset($opinion['user_name']) && $opinion['user_name']) {echo $opinion['user_name'];} else {echo $opinion['mobile'];}?>
+            <span>积分<?php if(isset($opinion['integral'])) {echo $opinion['integral'];} else echo '0';?>分</span>
           </h3>
           <div class="pro-point">
             <div class="info">
-              <?php if(isset($allopinion[$i]) && isset($allopinion[$i]['view'])) echo $allopinion[$i]['view'];?>
+              <a href="/opinion/op?id=<?php if(isset($opinion['user_id'])) echo $opinion['user_id'];?>">
+              <?php if(isset($opinion['view'])) echo $opinion['view'];?>
+              </a>
             </div>
-            <div class="aq">追问（共800条）</div>
+            
+            <div class="aq">追问（共<?php if(isset($opinion['count'])) echo $opinion['count'];?>条）</div>
           </div>
         </li>
         <?php }?>

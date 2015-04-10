@@ -16,11 +16,15 @@ class Opinion extends CI_Controller {
 	public function index()
 	{
 		$session_id = $this->session->userdata('session_id');
-		$info = $this->user_model->get_user($session_id);
-		$alluser = $this->user_model->get_alluser();
+		$info = $this->user_model->get_user(array('mobile' => $session_id));
 		$allopinion = $this->opinion_model->get_allopinion();
+		//print_r($allopinion);
+		foreach($allopinion as $i => $opinion){
+			$ret = $this->comment_model->get_count(array('opinion_id' => $opinion['id']));
+			$allopinion[$i]['count'] = $ret['num'];
+		}
+		$output['count'] = $ret['num'];
 		$output['info'] = $info;
-		$output['alluser'] = $alluser;
 		$output['allopinion'] = $allopinion;
 		$this->load->view('opinions', $output);
 	}
@@ -28,16 +32,24 @@ class Opinion extends CI_Controller {
 	public function edit()
 	{
 		$session_id = $this->session->userdata('session_id');
-		$info = $this->user_model->get_user($session_id);
+		$info = $this->user_model->get_user(array('mobile' => $session_id));
 		$this->load->view('edit', array('info' => $info));
 	}
 	
 	public function personal()
 	{
-		$mobile = '17600878830';
+		$mobile = '15124553849';
+		//$this->user_model->insert_user(array('mobile' => $mobile));
 		$this->session->set_userdata(array('session_id' => $mobile));
-		$info = $this->user_model->get_user($mobile);
-		$this->load->view('personal', array('info' => $info));
+		$info = $this->user_model->get_user(array('mobile' => $mobile));
+		$opinion = $this->opinion_model->get_opinion(array('user_id' => $info['id']));
+		$output['info'] = $info;
+		if ($opinion) {
+			$output['published'] = true;
+			$ret = $this->comment_model->get_count(array('opinion_id' => $opinion['id']));
+			$output['count'] = $ret['num'];
+		}
+		$this->load->view('personal', $output);
 	}
 	
 	function do_edit()
@@ -53,19 +65,53 @@ class Opinion extends CI_Controller {
 	public function myop()
 	{
 		$session_id = $this->session->userdata('session_id');
-		$info = $this->user_model->get_user($session_id);
-		$opinion = $this->opinion_model->get_opinion($info['id']);
+		$info = $this->user_model->get_user(array('mobile' => $session_id));
+		$opinion = $this->opinion_model->get_opinion(array('user_id' => $info['id']));
+		$comments = $this->comment_model->get_allcomment(array('opinion_id' => $opinion['id']));
 		$output['info'] = $info;
 		$output['opinion'] = $opinion;
+		$output['comments'] = $comments;
 		$output['pictures'] = explode(',', $opinion['pictures']);
 		$this->load->view('myop', $output);
+	}
+	
+	public function op()
+	{
+		$id = $this->input->get('id');
+		$info = $this->user_model->get_user(array('id' => $id));
+		$opinion = $this->opinion_model->get_opinion(array('user_id' => $id));
+		$comments = $this->comment_model->get_allcomment(array('opinion_id' => $opinion['id']));
+		$ret = $this->comment_model->get_count(array('opinion_id' => $opinion['id']));
+		$output['count'] = $ret['num'];
+		//print_r($comments);
+		$output['info'] = $info;
+		$output['opinion'] = $opinion;
+		$output['comments'] = $comments;
+		$output['pictures'] = explode(',', $opinion['pictures']);
+		$this->load->view('op', $output);
+	}
+	
+	function comment()
+	{
+		$session_id = $this->session->userdata('session_id');
+		$info = $this->user_model->get_user(array('mobile' => $session_id));
+
+		$data['owner_id'] = $info['id'];
+		$data['opinion_id'] = $this->input->post('opid');
+		$data['target_id'] = $this->input->post('tgid');
+		$data['content'] = $this->input->post('content');
+		$data['create_time'] = time();
+
+		$this->comment_model->insert_comment($data);
+		$id = $data['target_id'];
+		redirect("/opinion/op?id=$id");
 	}
 	
 	public function myopmf()
 	{
 		$session_id = $this->session->userdata('session_id');
-		$info = $this->user_model->get_user($session_id);
-		$opinion = $this->opinion_model->get_opinion($info['id']);
+		$info = $this->user_model->get_user(array('mobile' => $session_id));
+		$opinion = $this->opinion_model->get_opinion(array('user_id' => $info['id']));
 		$output['info'] = $info;
 		$output['opinion'] = $opinion;
 		$output['pictures'] = explode(',', $opinion['pictures']);
@@ -75,7 +121,7 @@ class Opinion extends CI_Controller {
 	function do_modify()
 	{
 		$session_id = $this->session->userdata('session_id');
-		$info = $this->user_model->get_user($session_id);
+		$info = $this->user_model->get_user(array('mobile' => $session_id));
 
 		$data['stars'] = $this->input->post('stars');
 		$data['score'] = $this->input->post('score');
@@ -98,7 +144,7 @@ class Opinion extends CI_Controller {
 
 		$this->load->library('upload', $config);
 		
-		$info = $this->user_model->get_user($session_id);
+		$info = $this->user_model->get_user(array('mobile' => $session_id));
 		if ( ! $this->upload->do_upload())
 		{
 			$error = array('error' => $this->upload->display_errors());
@@ -108,11 +154,11 @@ class Opinion extends CI_Controller {
 		else
 		{
 			$upload_data = $this->upload->data();
-			$base_dir = 'D:/xampp/htdocs';
+			$base_dir = str_replace('\\' , '/' ,getcwd());
 			$dir = $upload_data['full_path'];
 			$data['photo'] = str_replace($base_dir , '' , $dir);
 			$this->user_model->update_user($session_id, $data);	
-			$info = $this->user_model->get_user($session_id);
+			$info = $this->user_model->get_user(array('mobile' => $session_id));
 			$this->load->view('edit', array('info' => $info));
 		}
 	}
@@ -127,8 +173,8 @@ class Opinion extends CI_Controller {
 
 		$this->load->library('upload', $config);
 		$session_id = $this->session->userdata('session_id');
-		$info = $this->user_model->get_user($session_id);
-		$data = $this->opinion_model->get_opinion($info['id']);
+		$info = $this->user_model->get_user(array('mobile' => $session_id));
+		$data = $this->opinion_model->get_opinion(array('user_id' => $info['id']));
 		$user_id = $info['id'];
 
 		if ( ! $this->upload->do_upload())
@@ -141,10 +187,10 @@ class Opinion extends CI_Controller {
 		else
 		{
 			$upload_data = $this->upload->data();
-			$base_dir = 'D:/xampp/htdocs';
+			$base_dir = str_replace('\\' , '/' ,getcwd());
 			$dir = $upload_data['full_path'];
 			$data['pictures'] = str_replace($base_dir , '' , $dir);
-			$opinion = $this->opinion_model->get_opinion($user_id);
+			$opinion = $this->opinion_model->get_opinion(array('user_id' => $user_id));
 			if (!$opinion) {
 				$data['user_id'] = $user_id;
 				$ret = $this->opinion_model->insert_opinion($data);

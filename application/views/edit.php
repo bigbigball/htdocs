@@ -39,7 +39,8 @@
   </div>
   <div class="container">
     <div class="location">
-      <span>当前位置—个人中心</span>
+      <span><a href="/opinion/personal">个人中心 </a>
+      <i></i>修改</span>
     </div>
     <div class="content pcedit">
         <h4>修改个人信息</h4>
@@ -60,7 +61,7 @@
             <p for="">个人描述</p>
             <textarea name="brief" cols="30" rows="10"><?php if(isset($info['brief']) && !empty($info['brief'])) {echo $info['brief'];} else {echo '暂无';}?></textarea>
           </div>
-          <input type="submit" value="确认" style="margin-left: 34px;margin-top: 30px;width: 290px;border: none;background: #3cd5af;color: #fff;font-size: 20px;padding: 6px 12px;border-radius: 6px;">
+          <input type="submit" class="btn btn-a" value="确认">
         </form>
         </div>
         </div>

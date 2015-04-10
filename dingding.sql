@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: 127.0.0.1
--- 生成日期: 2015-04-10 01:22:59
+-- 生成日期: 2015-04-11 01:04:40
 -- 服务器版本: 5.6.11
 -- PHP 版本: 5.5.1
 
@@ -25,10 +25,10 @@ USE `dingding`;
 -- --------------------------------------------------------
 
 --
--- 表的结构 `commet`
+-- 表的结构 `comment`
 --
 
-CREATE TABLE IF NOT EXISTS `commet` (
+CREATE TABLE IF NOT EXISTS `comment` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `opinion_id` int(11) unsigned NOT NULL DEFAULT '0',
   `owner_id` int(11) unsigned NOT NULL DEFAULT '0',
@@ -38,7 +38,18 @@ CREATE TABLE IF NOT EXISTS `commet` (
   `create_time` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `opinion_id` (`opinion_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- 转存表中的数据 `comment`
+--
+
+INSERT INTO `comment` (`id`, `opinion_id`, `owner_id`, `target_id`, `status`, `content`, `create_time`) VALUES
+(1, 1, 3, 3, 0, '评论测试', 1428678170),
+(2, 1, 3, 3, 0, '评论测试', 1428678332),
+(3, 1, 4, 3, 0, '顶！！！', 1428679601),
+(4, 2, 4, 4, 0, 'up', 1428681788),
+(5, 2, 4, 4, 0, '自己评论自己', 1428684847);
 
 -- --------------------------------------------------------
 
@@ -59,14 +70,15 @@ CREATE TABLE IF NOT EXISTS `opinion` (
   `update_time` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `opinion`
 --
 
 INSERT INTO `opinion` (`id`, `user_id`, `device`, `status`, `pictures`, `score`, `stars`, `view`, `create_time`, `update_time`) VALUES
-(1, 3, NULL, 0, '/uploads/product/Hydrangeas.jpg', NULL, NULL, '<h5 style="font-family:''Microsoft YaHei'';font-size:16px;color:#333333;">\r\n	test\r\n</h5>\r\n<p style="font-family:''Microsoft YaHei'';color:#333333;font-size:medium;">\r\n	丁盯团队由一批酷爱电子产品的极客组成，其核心团队均来自国内顶级互联网公司，并有着丰富智能家居及可穿戴领域经验，可以说是国内最早一批大量接触智能生活硬件的团队。基于对智能硬件更纯粹更极致的追求，一群有共同信仰的人走到了一起，创造了丁盯智能。\r\n</p>', 0, '2015-04-09 16:41:48');
+(1, 3, NULL, 0, '/uploads/product/Hydrangeas.jpg', NULL, NULL, '<h5 style="font-family:''Microsoft YaHei'';font-size:16px;color:#333333;">\r\n	test\r\n</h5>\r\n<p style="font-family:''Microsoft YaHei'';color:#333333;font-size:medium;">\r\n	丁盯团队由一批酷爱电子产品的极客组成，其核心团队均来自国内顶级互联网公司，并有着丰富智能家居及可穿戴领域经验，可以说是国内最早一批大量接触智能生活硬件的团队。基于对智能硬件更纯粹更极致的追求，一群有共同信仰的人走到了一起，创造了丁盯智能。\r\n</p>', 0, '2015-04-09 16:41:48'),
+(2, 4, NULL, 0, '/uploads/product/Lighthouse.jpg', NULL, NULL, '门锁很好用', 0, '2015-04-10 15:53:20');
 
 -- --------------------------------------------------------
 
@@ -83,14 +95,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `integral` int(11) unsigned DEFAULT '0',
   `is_leader` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- 转存表中的数据 `user`
 --
 
 INSERT INTO `user` (`id`, `user_name`, `mobile`, `photo`, `brief`, `integral`, `is_leader`) VALUES
-(3, '牛', '17600878830', '/uploads/17600878830_photo.jpg', '开发者', 0, 0);
+(3, '牛', '17600878830', '/uploads/17600878830_photo.jpg', '开发者', 0, 0),
+(4, '尹', '15124553849', '/uploads/15124553849_photo.jpg', '使用者', 0, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
