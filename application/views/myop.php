@@ -84,7 +84,7 @@
               <div class="row">
                 <div class="col_l">外观</div>
                 <div class="col_r">
-                  <span class="grade" data="1.5">
+                  <span class="grade" data="<?php if(isset($stars[0])) echo $stars[0]*0.5; else echo '0';?>">
                     <i class="num"></i>
                   </span>
                 </div>
@@ -92,7 +92,7 @@
               <div class="row">
                 <div class="col_l">稳定性</div>
                 <div class="col_r">
-                  <span class="grade" data="2">
+                  <span class="grade" data="<?php if(isset($stars[1])) echo $stars[1]*0.5; else echo '0';?>">
                     <i class="num"></i>
                   </span>
                 </div>
@@ -100,7 +100,7 @@
               <div class="row">
                 <div class="col_l">智能</div>
                 <div class="col_r">
-                  <span class="grade" data="1">
+                  <span class="grade" data="<?php if(isset($stars[2])) echo $stars[2]*0.5; else echo '0';?>">
                     <i class="num"></i>
                   </span>
                 </div>
@@ -108,7 +108,7 @@
               <div class="row">
                 <div class="col_l">功耗</div>
                 <div class="col_r">
-                  <span class="grade" data="2.5">
+                  <span class="grade" data="<?php if(isset($stars[3])) echo $stars[3]*0.5; else echo '0';?>">
                     <i class="num"></i>
                   </span>
                 </div>
@@ -116,7 +116,7 @@
             </div>
             <div class="circle">
               <p>综合评分</p>
-              <div class="circle-percent" data="7">
+              <div class="circle-percent" data="<?php if(isset($opinion['score'])) echo $opinion['score']; else echo '0';?>">
                 <div class="left"><img src="/static/images/circle_r.png" /></div>
                 <div class="cover"></div>
                 <div class="right"><img src="/static/images/circle_l.png" /></div>
@@ -201,6 +201,7 @@
     </div>
   </div>
   <script type="text/javascript" src="/static/script/jquery-1.7.min.js"></script>
+  <script type="text/javascript" src="/static/script/jquery.rotate.min.js"></script>
   <script type="text/javascript" src="/static/script/script.js"></script>
 </body>
 </html>

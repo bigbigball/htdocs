@@ -38,7 +38,7 @@ class Opinion extends CI_Controller {
 	
 	public function personal()
 	{
-		$mobile = '15124553849';
+		$mobile = '17600878830';
 		//$this->user_model->insert_user(array('mobile' => $mobile));
 		$this->session->set_userdata(array('session_id' => $mobile));
 		$info = $this->user_model->get_user(array('mobile' => $mobile));
@@ -72,6 +72,7 @@ class Opinion extends CI_Controller {
 		$output['opinion'] = $opinion;
 		$output['comments'] = $comments;
 		$output['pictures'] = explode(',', $opinion['pictures']);
+		$output['stars'] = explode(',', $opinion['stars']);
 		$this->load->view('myop', $output);
 	}
 	
@@ -88,6 +89,7 @@ class Opinion extends CI_Controller {
 		$output['opinion'] = $opinion;
 		$output['comments'] = $comments;
 		$output['pictures'] = explode(',', $opinion['pictures']);
+		$output['stars'] = explode(',', $opinion['stars']);
 		$this->load->view('op', $output);
 	}
 	
@@ -122,8 +124,12 @@ class Opinion extends CI_Controller {
 	{
 		$session_id = $this->session->userdata('session_id');
 		$info = $this->user_model->get_user(array('mobile' => $session_id));
-
-		$data['stars'] = $this->input->post('stars');
+		
+		$star1 = $this->input->post('star1');
+		$star2 = $this->input->post('star2');
+		$star3 = $this->input->post('star3');
+		$star4 = $this->input->post('star4');
+		$data['stars'] = $star1 . ',' . $star2 . ',' . $star3 . ',' . $star4;
 		$data['score'] = $this->input->post('score');
 		$data['view'] = $this->input->post('web_description');
 

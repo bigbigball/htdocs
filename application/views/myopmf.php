@@ -108,6 +108,7 @@
                   <label  class="star star_3"></label>
                   <label  class="star star_4"></label>
                   <label  class="star star_5"></label>
+                  <input  id="star" type="hidden" name="star1" value=""/>
                 </div>
               </div>
             </div>
@@ -120,6 +121,7 @@
                   <label  class="star star_3"></label>
                   <label  class="star star_4"></label>
                   <label  class="star star_5"></label>
+                  <input  id="star" type="hidden" name="star2" value=""/>
                 </div>
               </div>
             </div>
@@ -132,6 +134,7 @@
                   <label  class="star star_3"></label>
                   <label  class="star star_4"></label>
                   <label  class="star star_5"></label>
+                  <input  id="star" type="hidden" name="star3" value=""/>
                 </div>
               </div>
             </div>
@@ -144,6 +147,7 @@
                   <label  class="star star_3"></label>
                   <label  class="star star_4"></label>
                   <label  class="star star_5"></label>
+                  <input  id="star" type="hidden" name="star4" value=""/>
                 </div>
               </div>
             </div>
@@ -155,6 +159,7 @@
                 <div class="cover"></div>
                 <div class="right"><img src="/static/images/circle_l.png" /></div>
               </div>
+              <input  id="score" type="hidden" name="score" value=""/>
           </div>
         </div>
       </div>
@@ -207,7 +212,7 @@
     </div>
   </div>
   <script type="text/javascript" src="/static/script/jquery-1.7.min.js"></script>
-   <script type="text/javascript" src="/static/script/jquery.rotate.min.js"></script>
+  <script type="text/javascript" src="/static/script/jquery.rotate.min.js"></script>
   <script type="text/javascript" src="/static/script/script.js"></script>
     <script src="/static/script/keditor/kindeditor-min.js"></script>
     <script src="/static/script/keditor/lang/zh_CN.js"></script>

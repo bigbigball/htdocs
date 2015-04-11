@@ -72,9 +72,11 @@ $(document).ready(function() {
       clearInterval(t);
       stararea.each(function(index) {
         num = $(this).find('.checked').index()+1;
+        $(this).find('#star').val(num);
         comscore += num * 0.5;
       });
       circle.attr("data", comscore);
+      $(".circle #score").val(comscore);
       
       if (circle !== null) {
         t = setInterval(function() {
