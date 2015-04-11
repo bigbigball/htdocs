@@ -16,8 +16,20 @@
         <img src="<?php if(isset($info['photo'])) echo $info['photo'];?>" />
       </a>
 
-      <a href="/user/login" class="btn">登录</a>
-      <a href="/user/logout" class="btn">退出</a>
+      <ul class="loginbar">
+      <?php if(!isset($_SESSION['user_id'])) { ?>
+        <li>
+          <a style="cursor:pointer;" href="/user/login" >登录</a>
+        </li>
+        <li>
+          <a style="cursor:pointer;" href="/user/sign" >注册</a>
+        </li>
+      <?php } else { ?>
+        <li>
+          <a style="cursor:pointer;" href="/user/logout" >退出</a>
+        </li>
+      <?php } ?>
+      </ul>
 
       <ul class="navbar">
         <li>

@@ -204,6 +204,31 @@ ul > li {
 .header .navbar li.active a{
   color: #3cd5af;
 }
+
+.header .loginbar{
+  float: right;
+  overflow: hidden;
+}
+.header .loginbar li{
+  float: left;
+}
+.header .loginbar li a{
+  padding: 26.5px 10px;
+  font-size: 8px;
+  font-family:'Microsoft YaHei'; 
+  text-align: center;
+  text-decoration: none;
+  color: #666;
+  display: inline-block;
+  background: url(../images/nav_bg.png) left center no-repeat;
+}
+.header .loginbar li:first-child a{
+  background:none;
+}
+.header .loginbar li a:hover,
+.header .loginbar li.active a{
+  color: #3cd5af;
+}
 .container {
   margin: 0 auto;
   width: 1180px;

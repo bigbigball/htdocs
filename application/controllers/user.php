@@ -10,6 +10,10 @@ class User extends CI_Controller {
         $this->load->library('session');
     }
 
+    public function sign() {
+        redirect("https://passport.dding.net/sign?redirect_uri=".site_url('/user/login'));
+    }
+
     public function login()
     {
         $access_token = get_cookie('access_token');
