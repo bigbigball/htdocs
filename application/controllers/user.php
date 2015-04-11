@@ -41,10 +41,10 @@ class User extends CI_Controller {
         $this->load->model('user_model');
         $user_model = &$this->user_model;
         $user_model instanceof User_model;
-        $user_info = $user_model->get_user($content['UserName']);
+        $user_info = $user_model->get_user(array('mobile' => $content['UserName']));
         if (empty($user_info)) {
-            $user_model->insert_user($content['UserName']);
-            $user_info = $user_model->get_user($content['UserName']);
+            $user_model->insert_user(array('mobile' => $content['UserName']));
+            $user_info = $user_model->get_user(array('mobile' => $content['UserName']));
         }
         
         if (!isset($user_info['id'])) {

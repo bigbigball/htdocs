@@ -18,9 +18,9 @@ class User_model extends CI_Model
 		return $this->db->insert('user', $data);
 	}
 	
-	public function update_user($mobile, $data)
+	public function update_user($where, $data)
 	{
-		$this->db->where('mobile', $mobile);
+		$this->db->where($where);
 		return $this->db->update('user', $data);
 	}
 }

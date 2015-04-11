@@ -103,11 +103,11 @@
               <div class="col_l">外观</div>
               <div class="col_r">
                 <div id="starBg" class="star_bg">
-                  <label  class="star star_1"></label>
-                  <label  class="star star_2"></label>
-                  <label  class="star star_3"></label>
-                  <label  class="star star_4"></label>
-                  <label  class="star star_5"></label>
+                  <label  class="star star_1 <?php if(isset($stars[0]) && $stars[0] == '1') echo 'checked';?>"></label>
+                  <label  class="star star_2 <?php if(isset($stars[0]) && $stars[0] == '2') echo 'checked';?>"></label>
+                  <label  class="star star_3 <?php if(isset($stars[0]) && $stars[0] == '3') echo 'checked';?>"></label>
+                  <label  class="star star_4 <?php if(isset($stars[0]) && $stars[0] == '4') echo 'checked';?>"></label>
+                  <label  class="star star_5 <?php if(isset($stars[0]) && $stars[0] == '5') echo 'checked';?>"></label>
                   <input  id="star" type="hidden" name="star1" value=""/>
                 </div>
               </div>
@@ -116,11 +116,11 @@
               <div class="col_l">稳定性</div>
               <div class="col_r">
                 <div id="starBg" class="star_bg">
-                  <label  class="star star_1"></label>
-                  <label  class="star star_2"></label>
-                  <label  class="star star_3"></label>
-                  <label  class="star star_4"></label>
-                  <label  class="star star_5"></label>
+                  <label  class="star star_1 <?php if(isset($stars[1]) && $stars[1] == '1') echo 'checked';?>"></label>
+                  <label  class="star star_2 <?php if(isset($stars[1]) && $stars[1] == '2') echo 'checked';?>"></label>
+                  <label  class="star star_3 <?php if(isset($stars[1]) && $stars[1] == '3') echo 'checked';?>"></label>
+                  <label  class="star star_4 <?php if(isset($stars[1]) && $stars[1] == '4') echo 'checked';?>"></label>
+                  <label  class="star star_5 <?php if(isset($stars[1]) && $stars[1] == '5') echo 'checked';?>"></label>
                   <input  id="star" type="hidden" name="star2" value=""/>
                 </div>
               </div>
@@ -129,11 +129,11 @@
               <div class="col_l">智能</div>
               <div class="col_r">
                 <div id="starBg" class="star_bg">
-                  <label  class="star star_1"></label>
-                  <label  class="star star_2"></label>
-                  <label  class="star star_3"></label>
-                  <label  class="star star_4"></label>
-                  <label  class="star star_5"></label>
+                  <label  class="star star_1 <?php if(isset($stars[2]) && $stars[2] == '1') echo 'checked';?>"></label>
+                  <label  class="star star_2 <?php if(isset($stars[2]) && $stars[2] == '2') echo 'checked';?>"></label>
+                  <label  class="star star_3 <?php if(isset($stars[2]) && $stars[2] == '3') echo 'checked';?>"></label>
+                  <label  class="star star_4 <?php if(isset($stars[2]) && $stars[2] == '4') echo 'checked';?>"></label>
+                  <label  class="star star_5 <?php if(isset($stars[2]) && $stars[2] == '5') echo 'checked';?>"></label>
                   <input  id="star" type="hidden" name="star3" value=""/>
                 </div>
               </div>
@@ -142,11 +142,11 @@
               <div class="col_l">功耗</div>
               <div class="col_r">
                 <div id="starBg" class="star_bg">
-                  <label  class="star star_1"></label>
-                  <label  class="star star_2"></label>
-                  <label  class="star star_3"></label>
-                  <label  class="star star_4"></label>
-                  <label  class="star star_5"></label>
+                  <label  class="star star_1 <?php if(isset($stars[3]) && $stars[3] == '1') echo 'checked';?>"></label>
+                  <label  class="star star_2 <?php if(isset($stars[3]) && $stars[3] == '2') echo 'checked';?>"></label>
+                  <label  class="star star_3 <?php if(isset($stars[3]) && $stars[3] == '3') echo 'checked';?>"></label>
+                  <label  class="star star_4 <?php if(isset($stars[3]) && $stars[3] == '4') echo 'checked';?>"></label>
+                  <label  class="star star_5 <?php if(isset($stars[3]) && $stars[3] == '5') echo 'checked';?>"></label>
                   <input  id="star" type="hidden" name="star4" value=""/>
                 </div>
               </div>
@@ -154,7 +154,7 @@
           </div>
           <div class="circle">
             <p>综合评分</p>
-            <div class="circle-percent" data="0">
+            <div class="circle-percent" data="<?php if(isset($opinion['score'])) echo $opinion['score']; else echo '0';?>">
                 <div class="left"><img src="/static/images/circle_r.png" /></div>
                 <div class="cover"></div>
                 <div class="right"><img src="/static/images/circle_l.png" /></div>

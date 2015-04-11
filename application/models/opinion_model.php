@@ -18,9 +18,9 @@ class Opinion_model extends CI_Model
 		return $this->db->insert('opinion', $data);
 	}
 	
-	public function update_opinion($user_id, $data)
+	public function update_opinion($where, $data)
 	{
-		$this->db->where('user_id', $user_id);
+		$this->db->where($where);
 		return $this->db->update('opinion', $data);
 	}
 	
