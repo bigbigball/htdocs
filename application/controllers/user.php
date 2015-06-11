@@ -11,14 +11,14 @@ class User extends CI_Controller {
     }
 
     public function sign() {
-        redirect("https://passport.dding.net/sign?redirect_uri=".site_url('/user/login'));
+        redirect("https://passport.dding.net/sign?from=2&redirect_uri=".site_url('/user/login'));
     }
 
     public function login()
     {
         $access_token = get_cookie('access_token');
         if (empty($access_token)) {
-            redirect("https://passport.dding.net/login?redirect_uri=".site_url('/user/login'));
+            redirect("https://passport.dding.net/login?from=2&redirect_uri=".site_url('/user/login'));
         }
         
         $dot_pos = strpos($access_token, '.');
@@ -30,7 +30,7 @@ class User extends CI_Controller {
         $this->load->library('curl_client');
         $curl_client = &$this->curl_client;
         $curl_client instanceof Curl_client;
-        $url = 'https://passport.dding.net/check_self_accesstoken';
+        $url = 'https://passport.dding.net/check_self_accesstoken?from=2';
         $params = array('access_token' => $access_token);
         $response = $curl_client->call($url, $curl_client::HTTP_POST, $params);
         if ($response['httpcode'] != 200 || empty($response['content'])) {
@@ -50,7 +50,6 @@ class User extends CI_Controller {
             $user_model->insert_user(array('mobile' => $content['UserName']));
             $user_info = $user_model->get_user(array('mobile' => $content['UserName']));
         }
-        
         if (!isset($user_info['id'])) {
             redirect('/opinion');
         }
@@ -64,6 +63,21 @@ class User extends CI_Controller {
         $session->set_userdata('photo', $user_info['photo']);
         $session->set_userdata('integral', $user_info['integral']);
         $session->set_userdata('is_leader', $user_info['is_leader']);
+
+        // get user device list
+        $url = 'http://115.28.141.204:4089/user_device_list';
+        #$url = 'http://device-gate-2c.dding.net/user_device_list';
+        $sign = "{$user_info['mobile']}:{$access_token}:/user_device_list";
+        $params = array(
+            'AccessToken' => $access_token,
+            'Sign' => md5($sign),
+            'from' => 2,
+        );
+        $response = $curl_client->call($url, $curl_client::HTTP_GET, $params);
+        if ($response['httpcode'] == 200 && !empty($response['content'])) {
+            $content = json_decode($response['content'], true);
+            $session->set_userdata('devices', $content['devices']);
+        }
 
         redirect('/opinion/personal');
     }
