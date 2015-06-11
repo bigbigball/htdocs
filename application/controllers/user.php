@@ -66,7 +66,8 @@ class User extends CI_Controller {
 
         // get user device list
         $url = 'http://115.28.141.204:4089/user_device_list';
-        #$url = 'http://device-gate-2c.dding.net/user_device_list';
+        $url = 'http://device-gate-2c.dding.net:3000/user_device_list';
+        $url = 'http://115.28.166.184:3000/user_device_list';
         $sign = "{$user_info['mobile']}:{$access_token}:/user_device_list";
         $params = array(
             'AccessToken' => $access_token,
